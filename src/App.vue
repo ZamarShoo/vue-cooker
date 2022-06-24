@@ -1,30 +1,67 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
+<ModalPopup v-show="modal"/>
+  <Header />
   <router-view/>
 </template>
 
+
+<script>
+  import { mapState } from 'vuex'
+
+  import Header from "@/components/Header.vue"
+  import ModalPopup from "@/components/ModalPopup.vue"
+  export default {
+    components: {
+      Header, ModalPopup
+    },
+    computed: {
+      ...mapState({
+        modal: state => state.openModal
+      }),
+    },
+  }
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+  ::-webkit-scrollbar {width:0px;}
+  * {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    color: #333333;
+  }
 
-nav {
-  padding: 30px;
-}
+  section {
+    max-width: 1480px;
+    margin: 0 auto;
+  }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+  .wrapper {
+    padding: 50px 20px;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-font-smoothing: antialiased;
+    -o-font-smoothing: antialiased;
+    font-family: 'Roboto', sans-serif;
+    background: #F7FCFC;
+  }
+  ul {
+    list-style-type: none;
+  }
+  a {
+    text-decoration: none;
+  }
+  svg path {
+    transition: .2s
+  }
+  .activeLike svg path{
+    fill:red; fill-opacity:1;
+  }
 </style>
